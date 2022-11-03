@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +23,14 @@
             <img src="./assets/brand/CrackWatch.png" width="300px" alt="">
             <h2 class="h3 mb-3 fw-normal" style="color:gray">Ingrese con su cuenta</h1>
 
-                <div class="form-floating w-100">
+                <?php
+                if (isset($_GET['mensaje'])) {
+                    echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>' . $_GET['mensaje'] . '</p></div>';
+                }
+                ?>
+
+                <div class="form-floating ">
                     <input class="form-control" id="floatingInput" placeholder="Usuario">
                     <label for="floatingInput">Cuenta</label>
                 </div>
