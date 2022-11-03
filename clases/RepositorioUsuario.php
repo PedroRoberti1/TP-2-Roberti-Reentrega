@@ -27,7 +27,7 @@ class RepositorioUsuario{
 
 	public function login($usuario, $clave){
 
-		$q = "SELECT id , clave, nombre, apellido FROM usuarios WHERE usuario = ?";
+		$q = "SELECT * FROM usuarios WHERE usuario = ?";
 		$query = self::$conexion->prepare($q);
 		$query->bind_param('s', $usuario);
 
@@ -35,7 +35,8 @@ class RepositorioUsuario{
 			$query->bind_result($id, $clave_encriptada, $nombre, $apellido, $email);
 			if ($query->fetch()) {
 				if (password_verify($clave, $clave_encriptada)){
-				return new Usuario($usuario, $nombre, $apellido, $email, $id)	
+
+				return new Usuario($usuario, $nombre, $apellido, $email, $id);	
 				}
 			}
 		}
