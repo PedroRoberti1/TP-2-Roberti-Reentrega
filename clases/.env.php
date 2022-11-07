@@ -4,10 +4,10 @@ function credenciales() {
 	return [
 		'usuario'=>'root',
 		'clave'=> '',
-		'servidor'=> '127.0.0.1',
+		'servidor'=> 'localhost',
 		'base_de_datos'=>'crackwatch'	
 	];
 
 }
 
-?>
+ ?>
