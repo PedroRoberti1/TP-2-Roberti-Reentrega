@@ -18,7 +18,7 @@ class RepositorioUsuario{
 			);
 			if (self::$conexion->connect_error){
 				$error = 'Error al conectar:' . self::$conexion->connect_error;
-				self::$conexion = null;
+				self::$conexxion = null;
 				die($error);
 			}
 			self::$conexion->set_charset('utf8mb4');
@@ -36,7 +36,7 @@ class RepositorioUsuario{
 			if ($query->fetch()) {
 				if (password_verify($clave, $clave_encriptada)){
 
-				return new Usuario($usuario, $nombre, $apellido, $email, $id);	
+				return new Usuario($usuario, $nombre, $apellido, $email, $id);
 				}
 			}
 		}

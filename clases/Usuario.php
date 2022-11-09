@@ -32,8 +32,11 @@ class Usuario{
     public function getApellido() {
     	return $this->apellido;
     }
-    public function email() {
+    public function getEmail() {
     	return $this->email;
+    }
+	public function getNombreApellido(){
+    	return $this->nombre." ".$this->apellido;
     }
 }
 
