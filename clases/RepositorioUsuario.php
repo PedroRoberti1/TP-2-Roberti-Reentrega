@@ -48,8 +48,11 @@ public function save(Usuario $usuario, $clave){
 	$q = "INSERT INTO usuarios (usuario, clave, nombre, apellido, email)";
 	$q.= "VALUES (?, ?, ?, ?, ?)";
 	$query = self::$conexion->prepare($q);
+
 	$nombre_usuario = $usuario->getUsuario();
+
 	$clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);
+	
 	$nombre = $usuario->getNombre();
 	$apellido = $usuario->getApellido();
 	$email = $usuario->getEmail();	
