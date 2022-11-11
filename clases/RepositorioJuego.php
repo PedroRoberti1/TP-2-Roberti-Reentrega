@@ -30,22 +30,23 @@ class RepositorioJuego
     }
 
 
-public function agregar(Juego $juego, $imagen, $estado,  $crackby)
-    {
+public function agregar(Juego $j)
+
+{
 
         // Preparamos la query del update
-        $q = "INSERT INTO juegos (Nombre, Imagen, Estado, Crack_by) VALUES (?, ?, ?,?)";
+        $q = "INSERT INTO juegos (Juego, Imagen, Estado, crackby) VALUES (?, ?, ?, ?)";
         $query = self::$conexion->prepare($q);
 
         // Obtenemos los nuevos valores desde el objeto:
-        $juego = $juego->getJuego();
-        $imagen = $imagen->getImagen();
-        $estado = $estado->getEstado();
-        $crackby = $crackby->getCrackby();
+        $juego = $j->getJuego();
+        $imagen = $j->getImagen();
+        $estado = $j->getEstado();
+        $crackby = $j->getCrackby();
 
 
         // Asignamos los valores para reemplazar los "?" en la query
-        if (!$query->bind_param("sisi", $producto, $usuario_id, $marca, $cantidad)) {
+        if (!$query->bind_param("sisi", $juego, $imagen, $estado, $crackby)) {
             echo "fallo la consulta";
         }
 

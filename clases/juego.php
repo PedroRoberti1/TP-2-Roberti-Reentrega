@@ -12,7 +12,7 @@ class Juego{
 
 		$this->juego = $juego;
 		$this->estado = $estado;
-		$this->crack = $crackby;
+		$this->crackby = $crackby;
         $this->imagen= $imagen;
         $this->id= $id;
 	}
@@ -38,4 +38,6 @@ class Juego{
 
 
 }
+
+
 ?>
