@@ -1,7 +1,7 @@
 <?php 
 
 class Juego{
-
+    protected $id;
 	protected $juego;
 	protected $estado;
 	protected $crackby;

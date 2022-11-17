@@ -1,12 +1,27 @@
 <?php
-require_once 'clases/Usuario.php';
 session_start();
+require_once 'clases/Usuario.php';
+require_once 'clases/ControladorSesion.php';
+require_once 'clases/Juego.php';
+require_once 'clases/RepositorioUsuario.php';
+require_once 'clases/RepositorioJuego.php';
+
+
 if (isset($_SESSION['usuario'])) {
 	$usuario = unserialize($_SESSION['usuario']);
+
+
+
+	$rd = new RepositorioJuego();
+	$juegos = $rd->getJuegos();
 	$nomApe = $usuario->getNombreApellido();
 } else {
 	header('Location: index.php');
 }
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -35,29 +50,26 @@ if (isset($_SESSION['usuario'])) {
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">Juego</th>
+								<th scope="col">Imagen</th>
 								<th scope="col">Estado</th>
-								<th scope="col">Crack by:</th>
+								<th scope="col">crackby</th>
+								<th scope="col"></th>
 								<th scope="col" colspan="2">Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<?php
-							foreach ($persona as $dato) {
-							?>
 
-								<tr>
-									<td scope="row"><?php echo $dato->codigo; ?></td>
-									<td><?php echo $dato->Juego; ?></td>
-									<td><?php echo $dato->Estado; ?></td>
-									<td><?php echo $dato->Crackby; ?></td>
-									<td><a class="text-success" href="editar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-pencil-square"></i></a></td>
-									<td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
-								</tr>
+							foreach ($juegos as $dato) {
+								echo '<tr><td>' . $dato->getJuego() . '</td><td>'  . $dato->getEstado() . '</td><td>' . $dato->getCrackby() . '</td><td>' . $dato->getImagen() . '</td><td>' . $dato->getId() . '</td>';
+								echo '<td><a href="actualizar.php?id=' . $dato->getId() . '"';
+								echo 'class="btn btn-info">Editar</a></th>';
+								echo '<th><a href="delete.php?id=' . $dato->getId() . '" class="btn btn-danger">Eliminar</a></th>';
+							} ?>
+							</tr>
 
-							<?php
-							}
-							?>
+
 
 						</tbody>
 					</table>

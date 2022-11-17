@@ -25,6 +25,9 @@ class RepositorioUsuario{
 		}
 	}
 
+
+	
+
 	public function login($nombre_usuario, $clave){
 
 		$q = "SELECT * FROM usuarios WHERE usuario = ?";

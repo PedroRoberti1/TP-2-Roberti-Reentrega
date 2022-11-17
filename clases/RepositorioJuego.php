@@ -30,9 +30,27 @@ class RepositorioJuego
     }
 
 
-public function agregar(Juego $j)
+    //creamos la funcion de agregar juegos al crud
 
-{
+	public function getJuegos()
+    {
+        $q = "SELECT * FROM juegos";
+        $query = self::$conexion->prepare($q);
+
+        if ($query->execute()){
+            $query->bind_result($id, $juego, $imagen, $estado, $crackby);
+            $lista_de_productos = [];
+            while ($query->fetch()) {
+                $lista_de_productos[] = new Juego($id, $juego, $imagen, $estado, $crackby);                
+            }
+            return $lista_de_productos;
+        }
+        return false;
+    }
+
+    public function agregar(Juego $j)
+
+    {
 
         // Preparamos la query del update
         $q = "INSERT INTO juegos (Juego, Imagen, Estado, crackby) VALUES (?, ?, ?, ?)";
@@ -57,5 +75,4 @@ public function agregar(Juego $j)
             return false;
         }
     }
-
 }
