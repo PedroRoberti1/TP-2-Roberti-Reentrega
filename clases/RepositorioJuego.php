@@ -32,16 +32,16 @@ class RepositorioJuego
 
     //creamos la funcion de agregar juegos al crud
 
-	public function getJuegos()
+    public function getJuegos()
     {
         $q = "SELECT * FROM juegos";
         $query = self::$conexion->prepare($q);
 
-        if ($query->execute()){
+        if ($query->execute()) {
             $query->bind_result($id, $juego, $imagen, $estado, $crackby);
             $lista_de_productos = [];
             while ($query->fetch()) {
-                $lista_de_productos[] = new Juego($id, $juego, $imagen, $estado, $crackby);                
+                $lista_de_productos[] = new Juego($id, $juego, $imagen, $estado, $crackby);
             }
             return $lista_de_productos;
         }
@@ -84,27 +84,37 @@ class RepositorioJuego
 
         $query->bind_param('sss', $estado, $crackby, $id);
 
-        if ($query->execute()){
-        return true;
-        }
-        else {
+        if ($query->execute()) {
+            return true;
+        } else {
             return false;
         }
-    
     }
 
-    public function getEstadoanterior($id){
+    public function getEstadoanterior($id)
+    {
         $q = "SELECT Estado FROM juegos WHERE id = ?";
         $query = self::$conexion->prepare($q);
 
         $query->bind_param('d', $id);
         $query->bind_result($estado);
-        if ($query->execute()){
-            if($query->fetch()){
-            return $estado;    
+        if ($query->execute()) {
+            if ($query->fetch()) {
+                return $estado;
             }
         }
+        return false;
+    }
+    public function borrar($id)
+    {
+        $q = "DELETE FROM juegos WHERE id = ?";
+        $query = self::$conexion->prepare($q);
+
+        $query->bind_param('d', $id);
+        if ($query->execute()) {
+            return true;
+        } else {
             return false;
+        }
     }
 }
-
