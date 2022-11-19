@@ -1,9 +1,36 @@
+<?php
+
+//todo bien aca
+session_start();
+require_once 'clases/Usuario.php';
+require_once 'clases/ControladorSesion.php';
+require_once 'clases/Juego.php';
+require_once 'clases/RepositorioUsuario.php';
+require_once 'clases/RepositorioJuego.php';
+
+
+
+if (isset($_SESSION['usuario'])) {
+	$usuario = unserialize($_SESSION['usuario']);
+
+
+
+	$rd = new RepositorioJuego();
+	$juegos = $rd->getJuegos();
+
+} else {
+	header('Location: index.php');
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title> Crack Watch</title>
+	<title> Editar juego</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/style.css" rel="stylesheet">
@@ -15,18 +42,15 @@
 				<div class="card-header">
 					Ingresar datos:
 				</div>
-				<form class="p-4" method="POST" action="agregar.php">
-					<div class="mb-3">
-						<label class="form-label">Nombre: </label>
-						<input type="text" class="form-control" name="juego" autofocus required>
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Imagen: </label>
-						<input type="number" class="form-control" name="imagen" autofocus required>
+                
+				<form class="p-4" method="POST" action="editar2.php">
+                <div class="mb-3">
+						<label class="form-label">id: </label>
+						<input type="text" class="form-control mb-3" name="id" value="<?php echo $_GET['id']; ?>" readonly="">
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Estado: </label>
-						<input type="text" class="form-control" name="estado" autofocus required>
+						<input type="text" class="form-control" name="estado" value="<?php echo $rd->getEstadoanterior($_GET['id']); ?>" autofocus required>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Crack by: </label>

@@ -75,5 +75,36 @@ class RepositorioJuego
             return false;
         }
     }
+
+
+    public function actualizar($id, $estado, $crackby)
+    {
+        $q = "UPDATE juegos SET Estado=? , crackby = ? WHERE id= ?";
+        $query = self::$conexion->prepare($q);
+
+        $query->bind_param('sss', $estado, $crackby, $id);
+
+        if ($query->execute()){
+        return true;
+        }
+        else {
+            return false;
+        }
+    
+    }
+
+    public function getEstadoanterior($id){
+        $q = "SELECT Estado FROM juegos WHERE id = ?";
+        $query = self::$conexion->prepare($q);
+
+        $query->bind_param('d', $id);
+        $query->bind_result($estado);
+        if ($query->execute()){
+            if($query->fetch()){
+            return $estado;    
+            }
+        }
+            return false;
+    }
 }
 
