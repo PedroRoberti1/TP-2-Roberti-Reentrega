@@ -110,7 +110,8 @@ class RepositorioJuego
         $q = "DELETE FROM juegos WHERE id = ?";
         $query = self::$conexion->prepare($q);
 
-        $query->bind_param('d', $id);
+
+        $query->bind_param('d',$id);
         if ($query->execute()) {
             return true;
         } else {

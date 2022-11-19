@@ -5,7 +5,6 @@ require_once 'clases/Juego.php';
 require_once 'clases/RepositorioJuego.php';
 
 
-
 if (isset($_SESSION['usuario'])) {
 	$usuario = unserialize($_SESSION['usuario']);
 

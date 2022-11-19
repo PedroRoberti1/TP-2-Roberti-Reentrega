@@ -65,7 +65,7 @@ if (isset($_SESSION['usuario'])) {
 								echo '<tr><td>' . $dato->getJuego() . '</td><td>'  . $dato->getEstado() . '</td><td>' . $dato->getCrackby() . '</td><td>' . $dato->getImagen() . '</td><td>' . $dato->getId() . '</td>';
 								echo '<td><a href="editar.php?id=' . $dato->getJuego() . '"';
 								echo 'class="btn btn-info">Editar</a></th>';
-								echo '<th><a href="delete.php?id=' . $dato->getCrackby() . '" class="btn btn-danger">Eliminar</a></th>';
+								echo '<th><a href="borrar.php?id=' . $dato->getJuego() . '" class="btn btn-danger">Eliminar</a></th>';
 							} ?>
 							</tr>
 
