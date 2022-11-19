@@ -58,7 +58,7 @@ if (isset($_SESSION['usuario'])) {
 					</div>
 					<div class="d-grid">
 						<input type="hidden" name="oculto" value="1">
-						<input type="submit" class="btn btn-primary" value="Agregar">
+						<input type="submit" class="btn btn-primary" value="Modificar">
 					</div>
 				</form>
 			</div>

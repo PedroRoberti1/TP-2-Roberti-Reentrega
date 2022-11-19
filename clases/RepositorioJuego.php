@@ -38,10 +38,10 @@ class RepositorioJuego
         $query = self::$conexion->prepare($q);
 
         if ($query->execute()) {
-            $query->bind_result($id, $juego, $imagen, $estado, $crackby);
+            $query->bind_result($id, $juego, $estado, $crackby);
             $lista_de_productos = [];
             while ($query->fetch()) {
-                $lista_de_productos[] = new Juego($id, $juego, $imagen, $estado, $crackby);
+                $lista_de_productos[] = new Juego($id, $juego, $estado, $crackby);
             }
             return $lista_de_productos;
         }
@@ -53,18 +53,17 @@ class RepositorioJuego
     {
 
         // Preparamos la query del update
-        $q = "INSERT INTO juegos (Juego, Imagen, Estado, crackby) VALUES (?, ?, ?, ?)";
+        $q = "INSERT INTO juegos (Juego, Estado, crackby) VALUES (?, ?, ?)";
         $query = self::$conexion->prepare($q);
 
         // Obtenemos los nuevos valores desde el objeto:
         $juego = $j->getJuego();
-        $imagen = $j->getImagen();
         $estado = $j->getEstado();
         $crackby = $j->getCrackby();
 
 
         // Asignamos los valores para reemplazar los "?" en la query
-        if (!$query->bind_param("sisi", $juego, $imagen, $estado, $crackby)) {
+        if (!$query->bind_param("sss", $juego, $estado, $crackby)) {
             echo "fallo la consulta";
         }
 

@@ -50,9 +50,8 @@ if (isset($_SESSION['usuario'])) {
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">Juego</th>
-								<th scope="col">Imagen</th>
 								<th scope="col">Estado</th>
-								<th scope="col">crackby</th>
+								<th scope="col"> Crack by:</th>
 								<th scope="col"></th>
 								<th scope="col" colspan="2">Opciones</th>
 							</tr>
@@ -62,7 +61,7 @@ if (isset($_SESSION['usuario'])) {
 							<?php
 
 							foreach ($juegos as $dato) {
-								echo '<tr><td>' . $dato->getJuego() . '</td><td>'  . $dato->getEstado() . '</td><td>' . $dato->getCrackby() . '</td><td>' . $dato->getImagen() . '</td><td>' . $dato->getId() . '</td>';
+								echo '<tr><td>' . $dato->getJuego() . '</td><td>'  . $dato->getEstado() . '</td><td>' . $dato->getCrackby() . '</td><td>' . $dato->getId() . '</td>';
 								echo '<td><a href="editar.php?id=' . $dato->getJuego() . '"';
 								echo 'class="btn btn-info">Editar</a></th>';
 								echo '<th><a href="borrar.php?id=' . $dato->getJuego() . '" class="btn btn-danger">Eliminar</a></th>';
@@ -85,19 +84,19 @@ if (isset($_SESSION['usuario'])) {
 				<form class="p-4" method="POST" action="agregar.php">
 					<div class="mb-3">
 						<label class="form-label">Nombre: </label>
-						<input type="text" class="form-control" name="juego" autofocus required>
+						<input type="text" class="form-control" name="juego" autofocus required maxlength="40">
 					</div>
-					<div class="mb-3">
+					<!-- <div class="mb-3">
 						<label class="form-label">Imagen: </label>
-						<input type="number" class="form-control" name="imagen" autofocus required>
-					</div>
+						<input type="file" class="form-control" name="imagen" autofocus required>
+					</div> -->
 					<div class="mb-3">
 						<label class="form-label">Estado: </label>
-						<input type="text" class="form-control" name="estado" autofocus required>
+						<input type="text" class="form-control" name="estado" autofocus required maxlength="10">
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Crack by: </label>
-						<input type="text" class="form-control" name="crackby" autofocus required>
+						<input type="text" class="form-control" name="crackby" autofocus required  maxlength="10"> 
 					</div>
 					<div class="d-grid">
 						<input type="hidden" name="oculto" value="1">
